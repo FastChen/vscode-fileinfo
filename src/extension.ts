@@ -54,26 +54,30 @@ function AutoFileSizeFormat(filesize: number) {
 	let TB = filesize / 1024.0 / 1024 / 1024 / 1024;
 	let GB = filesize / 1024.0 / 1024 / 1024;
 	let MB = filesize / 1024.0 / 1024;
-	let KB = filesize; //filesize / 1024.0; KB直接显示就不除了，不然位数太小。
+	let KB = filesize / 1024.0;
 
 	if (PB > 1)
 	{
-		return PB + " PB";
+		return PB.toFixed(2) + " PB";
 	}
 	else if (TB > 1)
 	{
-		return TB + " TB";
+		return TB.toFixed(2) + " TB";
 	}
 	else if (GB > 1)
 	{
-		return GB + " GB";
+		return GB.toFixed(2) + " GB";
 	}
 	else if (MB > 1)
 	{
-		return MB + " MB";
+		return MB.toFixed(2) + " MB";
+	}
+	else if(KB > 1)
+	{
+		return KB.toFixed(1) + " KB";
 	}
 	else
 	{
-		return KB + " KB";
+		return filesize + " B";
 	}
 }
