@@ -35,7 +35,8 @@ function updateStatusBarItem(): void {
 		let file = vscode.window.activeTextEditor?.document;
 
 		if (file && file.uri.scheme === 'file') {
-			fileSizeStatusBarItem.text = getFileSize(file.fileName) + ' KB';
+			//fileSizeStatusBarItem.text = getFileSize(file.fileName) + ' KB';
+			fileSizeStatusBarItem.text = AutoFileSizeFormat(getFileSize(file.fileName));
 			fileSizeStatusBarItem.show();
 		} else {
 			fileSizeStatusBarItem.hide();
@@ -43,5 +44,36 @@ function updateStatusBarItem(): void {
 	}
 	catch {
 		fileSizeStatusBarItem.hide();
+	}
+}
+
+// 自动转换文件格式
+function AutoFileSizeFormat(filesize: number) {
+
+	let PB = filesize / 1024.0 / 1024 / 1024 / 1024 / 1024;
+	let TB = filesize / 1024.0 / 1024 / 1024 / 1024;
+	let GB = filesize / 1024.0 / 1024 / 1024;
+	let MB = filesize / 1024.0 / 1024;
+	let KB = filesize; //filesize / 1024.0; KB直接显示就不除了，不然位数太小。
+
+	if (PB > 1)
+	{
+		return PB + " PB";
+	}
+	else if (TB > 1)
+	{
+		return TB + " TB";
+	}
+	else if (GB > 1)
+	{
+		return GB + " GB";
+	}
+	else if (MB > 1)
+	{
+		return MB + " MB";
+	}
+	else
+	{
+		return KB + " KB";
 	}
 }
