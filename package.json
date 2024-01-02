@@ -1,9 +1,18 @@
 {
   "name": "fileinfo",
-  "displayName": "fileinfo",
+  "displayName": "FileInfo",
   "description": "Show the file info in the statusbar",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "publisher": "FastChen",
+  "icon": "images/vscode-filesize_512.png",
+  "homepage": "https://github.com/FastChen/vscode-fileinfo/blob/master/README.md",
+  "bugs": {
+    "url": "https://github.com/FastChen/vscode-fileinfo/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FastChen/vscode-fileinfo.git"
+  },
   "engines": {
     "vscode": "^1.80.0"
   },
@@ -12,9 +21,6 @@
   ],
   "activationEvents": ["*"],
   "main": "./out/extension.js",
-  "contributes": {
-    "commands": []
-  },
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
@@ -35,5 +41,19 @@
     "mocha": "^10.2.0",
     "typescript": "^5.1.3",
     "@vscode/test-electron": "^2.3.2"
+  },
+  "contributes": {
+    "commands": [],
+    "configuration": {
+      "title": "FileInfo",
+      "properties": {
+        "fileinfo.settings.statusbar.location": {
+          "type": "string",
+          "default": "right",
+          "description": "StatusBar show location",
+          "enum": ["left", "right"]
+        }
+      }
+    }
   }
 }

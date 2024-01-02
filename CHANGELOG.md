@@ -1,9 +1,25 @@
 # Change Log
 
-All notable changes to the "fileinfo" extension will be documented in this file.
+### v0.1.0 (2024-01-02)
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+**`[更新]`**
 
-## [Unreleased]
+- 配置文件中可以设置显示位置的左右
+- 新增 **EB** 进制格式
 
-- Initial release
+### v0.0.3 (2023-11-11)
+
+**`[优化]`**
+
+- 根据大小自动切换文件进制格式 (KB、MB、GB、TB...) 新增 Byte(B) 单位
+
+### v0.0.2 (2023-11-11)
+
+**`[更新]`**
+
+- 根据大小自动切换文件进制格式 (KB、MB、GB、TB...)
+
+### v0.0.2 (2023-08-01)
+
+**`[发布]`**
+- 第一个版本

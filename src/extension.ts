@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import { Config } from './Config';
 
 let fileSizeStatusBarItem: vscode.StatusBarItem;
 
@@ -6,7 +7,7 @@ export function activate(context: vscode.ExtensionContext) {
 	console.log('fileinfo active.');
 
 	// 创建文件大小状态栏
-	fileSizeStatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 0);
+	fileSizeStatusBarItem = vscode.window.createStatusBarItem(Config.getStatusBarLocation == "left" ? vscode.StatusBarAlignment.Left : vscode.StatusBarAlignment.Right, 0);
 	fileSizeStatusBarItem.tooltip = '当前文件大小';
 
 	// 设置事件
@@ -33,10 +34,10 @@ function getFileSize(filepath: String) {
 function updateStatusBarItem(): void {
 	try {
 		let file = vscode.window.activeTextEditor?.document;
-
 		if (file && file.uri.scheme === 'file') {
-			//fileSizeStatusBarItem.text = getFileSize(file.fileName) + ' KB';
-			fileSizeStatusBarItem.text = AutoFileSizeFormat(getFileSize(file.fileName));
+			let sizeStr = AutoFileSizeFormat(getFileSize(file.fileName));
+			fileSizeStatusBarItem.text = sizeStr;
+			fileSizeStatusBarItem.tooltip = '当前文件大小：' + sizeStr;
 			fileSizeStatusBarItem.show();
 		} else {
 			fileSizeStatusBarItem.hide();
@@ -49,14 +50,19 @@ function updateStatusBarItem(): void {
 
 // 自动转换文件格式
 function AutoFileSizeFormat(filesize: number) {
-
+	
+	let EB = filesize / 1024.0 / 1024 / 1024 / 1024 / 1024 / 1024;
 	let PB = filesize / 1024.0 / 1024 / 1024 / 1024 / 1024;
 	let TB = filesize / 1024.0 / 1024 / 1024 / 1024;
 	let GB = filesize / 1024.0 / 1024 / 1024;
 	let MB = filesize / 1024.0 / 1024;
 	let KB = filesize / 1024.0;
 
-	if (PB > 1)
+	if (EB > 1)
+	{
+		return EB.toFixed(2) + " EB";
+	}
+	else if (PB > 1)
 	{
 		return PB.toFixed(2) + " PB";
 	}
