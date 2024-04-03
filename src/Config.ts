@@ -13,4 +13,8 @@ export class Config {
     public static get getStatusBarLocation(): string {
         return Config.getSettings<string>('statusbar.location');
     }
+
+    public static get getAutoFileSizeFormat(): boolean {
+        return Config.getSettings<boolean>('autofilesizeformat');
+    }
 }

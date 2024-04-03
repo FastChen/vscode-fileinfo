@@ -29,4 +29,13 @@
 
 ![Fileinfo2](/images/vscode-fileinfo_2.png)
 
+## Build / 构建
+
+```
+$ vsce package
+# myExtension.vsix generated
+$ vsce publish
+# <publisher id>.myExtension published to VS Code Marketplace
+```
+
 **😊 Enjoy!**

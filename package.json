@@ -2,7 +2,7 @@
   "name": "fileinfo",
   "displayName": "FileInfo",
   "description": "Show the file info in the statusbar",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "publisher": "FastChen",
   "icon": "images/vscode-filesize_512.png",
   "homepage": "https://github.com/FastChen/vscode-fileinfo/blob/master/README.md",
@@ -52,6 +52,11 @@
           "default": "right",
           "description": "StatusBar show location",
           "enum": ["left", "right"]
+        },
+        "fileinfo.settings.autofilesizeformat": {
+          "type": "boolean",
+          "default": true,
+          "description": "Auto Format Files Size"
         }
       }
     }
